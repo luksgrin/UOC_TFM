@@ -1,0 +1,187 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{wrapfig}
+\usepackage[table]{xcolor}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{boldline}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\contentsname}{Index}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{uoccyan}\leaders\hrule height \footrulewidth\hfill}}
+\fancypagestyle{UOCfooterpage}{
+    \fancyhf{}
+    \renewcommand{\footrulewidth}{0.5pt}
+    \fancyfoot[L]{\color{uocblue} Máster Universitario en Bioinformática y Bioestadística\hspace{2.2cm} 02/09/2022}
+    }
+\def\arraystretch{1.5}
+\definecolor{uoccyan}{RGB}{115, 237, 255}
+\definecolor{uocblue}{RGB}{0, 0, 120}
+\definecolor{uocgrey}{RGB}{230, 230, 230}
+\setlength\fboxsep{1cm}
+\setlength{\parindent}{0pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+\pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customs
+\newcommand{\thistitle}{Molecular dynamics of Musashi-1 allosteric RNA-binding sites}
+\newcommand{\thisauthor}{Lucas Goiriz Beltrán}
+\newcommand{\thissupervisor}{Emmanuel Fajardo}
+\newcommand{\thisPRA}{Emmanuel Fajardo}
+\newcommand{\duedate}{10 de Enero 2023}
+\newcommand{\duedateshort}{01/2023}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       Title page                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{gobble}
+\newgeometry{left=2cm,right=1cm,top=2cm,bottom=0cm}
+
+\colorbox{uoccyan}{\parbox{0.84\textwidth}{
+    \setstretch{3}
+    \vspace{1.2cm}
+    \color{uocblue}\fontsize{40pt}{1cm}\textbf{\thistitle}
+    \vspace{1cm}
+}}
+
+\vspace{1cm}
+
+\begin{minipage}{\paperwidth}
+    \begin{minipage}{0.35\paperwidth}
+        \includegraphics[width=6cm]{assets/UOC_UB_logos}
+    \end{minipage}
+    \hspace{0.001\paperwidth}
+    \begin{minipage}{0.45\paperwidth}
+        \fontsize{24pt}{1cm}\textbf{\thisauthor}\\
+        
+        \vspace{0.5cm}
+        
+        {\fontsize{24pt}{1cm}\selectfont MU Bioinf. i Bioest.\\
+        Área de trabajo final}\\
+        
+        \vspace{0.5cm}
+        
+        \fontsize{24pt}{1cm}\textbf{Nombre Tutor/a de TF}\\
+
+        \vspace{0.1cm}
+
+        {\fontsize{21pt}{1cm}\selectfont \thissupervisor}\\
+
+        \vspace{0.1cm}
+
+        \fontsize{24pt}{1cm}\textbf{Profesor/a responsable de la asignatura}\\
+
+        \vspace{0.1cm}
+
+        {\fontsize{21pt}{1cm}\selectfont \thisPRA}\\
+
+        \vspace{0.5cm}
+
+        \fontsize{21pt}{1cm}\textbf{Fecha Entrega}\\
+
+        \vspace{0.5cm}
+
+        {\fontsize{21pt}{1cm}\selectfont \duedate}
+
+        \vspace{2cm}
+    \end{minipage}
+\end{minipage}
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       License Page                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\restoregeometry
+
+\fancyhead{\includegraphics[width=\linewidth]{assets/UOC_header.png}}
+\thispagestyle{UOCfooterpage}
+~
+\vfill
+\begin{minipage}[l]{0.4\paperwidth}
+    \includegraphics{assets/license.png}\\
+    Esta obra está sujeta a una licencia de Reconocimiento-NoComercial-SinObraDerivada \href{http://creativecommons.org/licenses/by-nc-nd/3.0/es/
+        }{3.0 España de Creative Commons}    
+\end{minipage}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       Summary Page                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{roman}
+
+\section*{\centering FICHA DEL TRABAJO FINAL}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{V{4}r|p{9cm}V{4}}
+        \hlineB{4}
+        \textbf{Título del trabajo:} & \cellcolor{uocgrey}\textit{\thistitle}\\
+        \hline
+        \textbf{Nombre del autor:} & \cellcolor{uocgrey}\textit{\thisauthor}\\
+        \hline
+        \textbf{Nombre del consultor/a:} & \cellcolor{uocgrey}\textit{\thissupervisor}\\
+        \hline
+        \textbf{Nombre del PRA:} & \cellcolor{uocgrey}\textit{\thisPRA}\\
+        \hline
+        \textbf{Fecha de entrega:} & \cellcolor{uocgrey}\textit{\duedateshort}\\
+        \hline
+        \textbf{Titulación o programa:} & \cellcolor{uocgrey}\textit{Máster Universitario en Bioinformática y Bioestadística}\\
+        \hline
+        \textbf{Área del Trabajo Final} & \cellcolor{uocgrey}\textit{Drug Design and Structural Biology}\\
+        \hline
+        \textbf{Idioma del trabajo:} & \cellcolor{uocgrey}\textit{Inglés}\\
+        \hline
+        \textbf{Palabras clave:} & \cellcolor{uocgrey}\textit{Molecular dynamics, RNA-binding protein, Allosteric Regulation}\\
+        \hline\hline
+        \multicolumn{2}{V{4}l V{4}}{\textbf{Resumen del Trabajo}}\\
+        \hline
+        \multicolumn{2}{V{4}p{14.3cm}V{4}}{\cellcolor{uocgrey} Máximo 250 palabras, con la finalidad, contexto de aplicación, metodología, resultados y conclusiones del trabajo}\\
+        \hline
+        \multicolumn{2}{V{4}l V{4}}{\textbf{Abstract}}\\
+        \hline
+        \multicolumn{2}{V{4}p{14.3cm}V{4}}{\cellcolor{uocgrey} A maximum of 250 words, detailing the purpose, context of application, methodology, results and conclusions of the work}\\
+        \hlineB{4}
+    \end{tabular}
+\end{table}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                     Section Index Page                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      Figure Index Page                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Index of Figures}
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          Sections                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}

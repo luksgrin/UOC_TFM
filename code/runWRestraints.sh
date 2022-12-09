@@ -53,10 +53,10 @@ python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/manipulateRNA.py rna_pr
 echo ">>>Make lightdock setup"
 
 # Without restraints
-lightdock3_setup.py protein.pdb rna.pdb -anm
+# lightdock3_setup.py protein.pdb rna.pdb -anm
 
 # With restraints
-# lightdock3_setup.py protein.pdb rna.pdb -anm -rst restraints.list
+lightdock3_setup.py protein.pdb rna.pdb -anm -rst restraints.list
 
 # Simulation
 

@@ -28,7 +28,7 @@ pdb_reatom "${proteinPDBfilename}_h.pdb" > protein_pre.pdb
 
 echo ">>>Fix HIS residues so that they work with AMBER force field"
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/fixHIS.py protein_pre.pdb > protein.pdb
+python3.9 ../../../fixHIS.py protein_pre.pdb > protein.pdb
 
 ## Case 2: RNA motif.
 
@@ -40,13 +40,13 @@ reduce -BUILD "${ligandPDBfilename}_noh.pdb" > "${ligandPDBfilename}_h.pdb"
 
 echo ">>>Remove possible top overhang OH"
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/removeEnds.py "${ligandPDBfilename}_h.pdb" > "${ligandPDBfilename}_nvh.pdb"
+python3.9 ../../../removeEnds.py "${ligandPDBfilename}_h.pdb" > "${ligandPDBfilename}_nvh.pdb"
 
 echo ">>>Rename and/or remove incompatible atom types of RNA"
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/reduce_to_amber.py "${ligandPDBfilename}_nvh.pdb" rna_pre.pdb
+python3.9 ../../../reduce_to_amber.py "${ligandPDBfilename}_nvh.pdb" rna_pre.pdb
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/manipulateRNA.py rna_pre.pdb > rna.pdb
+python3.9 ../../../manipulateRNA.py rna_pre.pdb > rna.pdb
 
 # Setup
 
@@ -62,7 +62,7 @@ lightdock3_setup.py protein.pdb rna.pdb -anm
 
 echo ">>>Recover RNA tags in lightdock_rna.pdb"
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/manipulateRNAagain.py lightdock_rna.pdb
+python3.9 ../../../manipulateRNAagain.py lightdock_rna.pdb
 
 echo ">>>Make lightdock simulation"
 

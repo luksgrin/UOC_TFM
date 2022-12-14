@@ -33,4 +33,4 @@ df["Coordinates"] = (
     )
 )
 
-print(df.sort_values("Scoring", ascending=False).tail(n=10))
+print(df.sort_values("Scoring", ascending=False).head(n=10))

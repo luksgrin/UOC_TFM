@@ -44,9 +44,9 @@ python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/removeEnds.py "${ligand
 
 echo ">>>Rename and/or remove incompatible atom types of RNA"
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/reduce_to_amber.py "${ligandPDBfilename}_nvh.pdb" rna_pre.pdb
+python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/reduce_to_amber.py "${ligandPDBfilename}_nvh.pdb" rna.pdb
 
-python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/manipulateRNA.py rna_pre.pdb > rna.pdb
+python3.9 /Users/orion/Lucas_Goiriz_Beltran/UOC_TFM/code/manipulateRNA.py rna.pdb
 
 # Setup
 
@@ -56,7 +56,7 @@ echo ">>>Make lightdock setup"
 # lightdock3_setup.py protein.pdb rna.pdb -anm
 
 # With restraints
-lightdock3_setup.py protein.pdb rna.pdb -anm -rst restraints.list
+lightdock3_setup.py protein.pdb rna.pdb -anm -rst ../../../restraints.list
 
 # Simulation
 
@@ -70,6 +70,8 @@ lightdock3.py setup.json 100 -s dna -c 4
 
 # Clustering and Filtering
 echo ">>>Do clustering and filtering"
+
+python3.9 ../../../manipulateRNA.py rna.pdb
 
 ## Calculate the number of swarms
 s=`ls -d ./swarm_* | wc -l`
@@ -95,9 +97,9 @@ ant_thony.py -c 4 cluster_lightdock.list;
 ### Generate ranking files for filtering
 lgd_rank.py $s 100;
 
-# ### Filtering models by >40% of satisfied restraints
-# lgd_filter_restraints.py --cutoff 5.0 --fnat 0.4 --lnuc rank_by_scoring.list restraints.list A B
+### Filtering models by >40% of satisfied restraints
+lgd_filter_restraints.py --cutoff 5.0 --fnat 0.4 --lnuc rank_by_scoring.list ../../../restraints.list A B
 
-# # Results
-# echo ">>>Top 10 simulations are:"
-# head filtered/rank_filtered.list
+# Results
+echo ">>>Top 10 simulations are:"
+head filtered/rank_filtered.list

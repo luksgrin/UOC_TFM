@@ -44,9 +44,9 @@ python3.9 ../../../removeEnds.py "${ligandPDBfilename}_h.pdb" > "${ligandPDBfile
 
 echo ">>>Rename and/or remove incompatible atom types of RNA"
 
-python3.9 ../../../reduce_to_amber.py "${ligandPDBfilename}_nvh.pdb" rna_pre.pdb
+python3.9 ../../../reduce_to_amber.py "${ligandPDBfilename}_nvh.pdb" rna.pdb
 
-python3.9 ../../../manipulateRNA.py rna_pre.pdb > rna.pdb
+python3.9 ../../../manipulateRNA.py rna.pdb
 
 # Setup
 
@@ -71,6 +71,8 @@ lightdock3.py setup.json 100 -s dna -c 4
 # Clustering and Filtering
 echo ">>>Do clustering and filtering"
 
+python3.9 ../../../manipulateRNA.py lightdock_rna.pdb
+
 ## Calculate the number of swarms
 s=`ls -d ./swarm_* | wc -l`
 swarms=$((s-1))
@@ -78,7 +80,7 @@ swarms=$((s-1))
 ## Create files for Ant-Thony
 for i in $(seq 0 $swarms)
   do
-    echo "cd swarm_${i}; lgd_generate_conformations.py ../protein.pdb ../rna.pdb  gso_100.out 200 > /dev/null 2> /dev/null;" >> generate_lightdock.list;
+    echo "cd swarm_${i}; lgd_generate_conformations.py ../protein.pdb ../rna.pdb gso_100.out 200 > /dev/null 2> /dev/null;" >> generate_lightdock.list;
   done
 
 for i in $(seq 0 $swarms)

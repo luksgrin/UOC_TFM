@@ -14,4 +14,5 @@ S = list(map(
     lines
 ))
 
-print("".join(S))
+with open(sys.argv[1], "w") as file:
+    file.write("".join(S))

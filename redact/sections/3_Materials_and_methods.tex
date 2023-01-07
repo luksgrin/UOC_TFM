@@ -1,0 +1,138 @@
+\section{Materials and methods}
+
+% En estos capítulos, es necesario describir:
+% •	los aspectos más relevantes del diseño y desarrollo del trabajo
+% •	la metodología elegida para realizar este desarrollo, describiendo las alternativas posibles, las decisiones tomadas, y los criterios utilizados para tomar estas decisiones.
+% •	descripción de los productos obtenidos.
+ 
+% La estructuración de los capítulos puede variar en función del tipo de trabajo.  
+ 
+% En caso de que proceda, se incluirá un apartado de “Valoración económica del trabajo”. Este apartado indicará los gastos asociados al desarrollo y mantenimiento del trabajo, así como los beneficios económicos obtenidos y un análisis final sobre la viabilidad del producto.
+
+% The sequence design of the mutant MSI-1 RNA-binding motifs will depend on the mutant’s secondary structure, which will be computed in silico by NUPACK (http://www.nupack.org/). The selected mutants will need to have different yet interesting secondary structures (folded state). • The .mol files of the fatty acids will be retrieved from the Chemspider database (https://www.chemspider.com/). • Docking simulations will be carried out with LightDock (https://lightdock.org/), and the subsequent results will be visualized with the open source version of PyMol (https://github.com/schrodinger/pymol-open-source). • Molecular dynamics simulations will be carried out with AMBER (https://ambermd.org/).
+
+% HITOS Task 1 will be considered a successful if the whole process of design, docking and molecular dynamics simulation is completed for at least 3 different mutants, which will be used in downstream simulations during this work. • Task 2 will be considered a successful if the process of docking and molecular dynamics simulation is completed for at least oleic acid and arachidonic acid, which again will be used in downstream simulations during this work. • Task 3 will be considered successful if at least 6 combinations of molecules are simultaneously docked and their molecular dynamics simulated. This is, 3 different mutants for each of oleic acid and arachidonic acid.
+
+% \subsection{Justificación de los cambios en caso necesario}
+
+% \begin{itemize}
+%     \item El objetivo 2 ha sido descartado. Esto se debe a complicaciones adicionales a la hora de hacer el docking proteína-RNA en el programa \texttt{lightdock}:
+
+%     \begin{itemize}
+%         \item La librería \texttt{proDy} (una librería que emplea \texttt{lightdock} para las simulaciones de docking) no reconoce cadenas de RNA expecificadas en los ficheros \texttt{.pdb} si estas son especificadas mediante el prefijo \texttt{R} en los identificadores de las bases nucleotídicas (es decir, \texttt{RA}, \texttt{RG}, \texttt{RU} y \texttt{RC}) en la estructura de la molécula. Este hecho resulta en un error en el paso de setup de \texttt{lightdock}.
+    
+%         La mitigación de este problema consistió en crear un script de \texttt{Python} que elimina ese prefijo \texttt{R} de los ficheros \texttt{.pdb}. Este script se encuentra en \textbf{\nameref{anexo_A}}.
+    
+%         \item Las simulaciones de docking no funcionaban puesto que el RNA tenía conflictos con los parámetros del AMBER \textit{force field}. Esto se debe a que los parámetros que \texttt{lightdock} debía usar para RNA, se especifican precisamente con el prefijo \texttt{R} eliminado en la mitigación anterior. Por lo tanto, la mitigación de este problema consiste en volver a añadir el prefijo \texttt{R} a los ficheros \texttt{.pdb} mediante un script de \texttt{Python}. Este script se encuentra en \textbf{\nameref{anexo_B}}.
+    
+%         \item Pese a la mitigación anterior, las simulaciones continuaban fallando. Esto se debía a que los RNAs empleados terminan en ``OH'' en los extremos 3' y 5'. \texttt{lightdock} no reconoce estos átomos como parte de la estructura ni tiene parámetros de AMBER \textit{force field} para ellos. Como mitigación, he decidido eliminar esos átomos mediante un script de \texttt{Python}. Asumo que eliminar un par átomos en los extremos de la molécula de RNA no marca mucha diferencia a la hora de hacer el docking. Este script se encuentra en \textbf{\nameref{anexo_C}}.
+    
+%         \item Una vez más, pese a las mitigaciones llevadas a cabo anteriormente, las simulaciones seguían fallando. Esta vez, el error venía de parte del fichero \texttt{.pdb} de la proteína: resulta que el aminoácido Histidina (con el identificador \texttt{HIS}) no existe en el AMBER \textit{force field}. Esto se debe a que para el AMBER \textit{force field}, Histidina puede ser uno de 3 residuos \cite{amber_histidine}:
+
+%         \begin{enumerate}
+%             \item\texttt{HID}: Histidina con un hidrógeno en el nitrógeno delta
+%             \item\texttt{HIE}: Histidina con un hidrógeno en el nitrógeno epsilon
+%             \item\texttt{HIP}: Histidina con hidrógenos en ambos nitrógenos (delta y epsilon). Esta Histidina tiene carga positiva
+%         \end{enumerate}
+
+%         La mitigación consistió en cambiar el identificador \texttt{HIS} por el identificador adecuado mediante un script de \texttt{Python}. Este script se encuentra en \textbf{\nameref{anexo_D}}.
+
+%         \item Con las mitigaciones anteriores, \texttt{lightdock} ejecutó sin problemas. Sin embargo, \texttt{lgd\_generate\_conformations} no ejecutó correctamente a la hora de construir los modelos de docking en formato \texttt{.pdb}. Esto se debe a que \texttt{lgd\_generate\_conformations}, como en uno de los pasos anteriores, no reconocía la estructura de RNA por el prefijo de la \texttt{R}. Por ende, hubo que añadir un paso de eliminación de ese prefijo de la \texttt{R}. Esto se llevó a cabo mediante el script de \texttt{Python} encontrado en \textbf{\nameref{anexo_A}}.
+
+%     \end{itemize}
+
+%     Con esas mitigaciones, los dockings se ejecutaron sin problema. Resolver las anteriores complicaciones implicaron una mayor inversión de tiempo en la parte de docking de este trabajo. Este hecho, y tras consultarlo con el supervisor de este trabajo, llevó a desechar la parte de dinámica molecular por completo.
+
+%     \item El objetivo 4 no se ha completado puesto que no se había contemplado para este período de tiempo. Las simulaciones de docking con los ácidos grasos están siendo ejecutadas durante la escritura de este informe.
+
+% \end{itemize}
+
+% \section{Relación de las actividades realizadas}
+
+% \subsection{Actividades previstas en el plan de trabajo}
+
+% Las actividades llevadas a cabo son las siguientes:
+
+% \begin{enumerate}
+%     \item Creación de los scripts de \texttt{Python} mencionados en las mitigaciones anteriores.
+
+%     \item Ejecución de las simulaciones de docking siguientes:
+%     \begin{itemize}
+%         \item MSI-1 y el motivo de RNA original
+%         \item MSI-1 y el motivo de RNA original (con estructura lineal)
+%         \item MSI-1 y el mutante de RNA número 1
+%         \item MSI-1 y el mutante de RNA número 2
+%         \item MSI-1 y el mutante de RNA número 3
+%         \item MSI-1 y el mutante de RNA número 4
+%         \item MSI-1 y el mutante de RNA número 5
+%     \end{itemize}
+
+%     \item Selección de los 10 modelos de docking con mejor score de luciferina para cada una de las simulaciones mencionadas anteriormente.
+
+%     \item Visualización de los modelos generados por \texttt{lightdock} mediante \texttt{pymol}.
+
+%     Los resultados se encuentran en los siguientes anexos:
+%     \begin{itemize}
+%         \item\textbf{\nameref{anexo_E}}
+%         \item\textbf{\nameref{anexo_F}}
+%         \item \textbf{\nameref{anexo_G}}
+%         \item \textbf{\nameref{anexo_H}}
+%         \item \textbf{\nameref{anexo_I}}
+%         \item \textbf{\nameref{anexo_J}}
+%         \item \textbf{\nameref{anexo_K}}
+%         \item \textbf{\nameref{anexo_L}}
+%         \item \textbf{\nameref{anexo_M}}
+%         \item \textbf{\nameref{anexo_N}}
+%         \item \textbf{\nameref{anexo_O}}
+%     \end{itemize}
+
+% \end{enumerate}
+
+% \subsection{Actividades no previstas y realizadas o programadas}
+
+% Adicionalmente, se llevaron las siguientes actividades no previstas:
+
+% \begin{itemize}
+
+%     \item Se llevó a cabo la creación de un script de \texttt{Python} cuyo objetivo es añadir la estructura secundaria de la proteína MSI-1 a los modelos de docking (dado que \texttt{lightdock} elimina esa información).
+
+%     \item Se inició una conversación con el equipo desarrollador de \texttt{lightdock} con el objetivo de elaborar un tutorial para el caso de docking proteína-RNA basado en este trabajo.
+
+% \end{itemize}
+
+
+% \item El objetivo 2 no se ha cumplido debido a unas complicaciones a la hora de hacer el docking proteína-RNA en el programa \texttt{lightdock}. 
+    
+% Varios intentos de \textit{setup} y simulación de docking fallaban sin motivo aparente. Tras varios intentos, descubrí que el problema se debía a que la protonación de los ficheros \texttt{.pdb} correspondientes a los motivos de RNA y el fichero \texttt{.pdb} del RRM1 de la proteína MSI-1 eran incompatibles. La mitigación es aparentemente sencilla y consiste en los siguientes pasos:
+
+% \begin{itemize}
+%     \item Emplear el software \href{https://github.com/rlabduke/reduce}{\texttt{reduce}} para corregir la protonación en los ficheros \texttt{.pdb}.
+%     \item Emplear el software \href{https://github.com/haddocking/pdb-tools/}{\texttt{pdb-tools}} para corregir la numeración de los átomos en los ficheros \texttt{.pdb}.
+%     \item Controlar que los protones corregidos por \texttt{reduce} a las estructuras de RNA sean 100\% compatibles con el campo de fuerzas \texttt{AMBER94} (que es el que se emplea como función \texttt{score} cuando se realiza docking con ácidos nucleicos). La documentación de \texttt{lightdock} proporciona un script para llevar a cabo este control: \href{https://lightdock.org/tutorials/0.9.1/dna_docking/data/reduce_to_amber.py}{\texttt{reduce\_to\_amber.py}}.
+% \end{itemize}
+
+% En principio, una vez llevados a cabo estos pasos, las simulaciones de docking pueden llevarse a cabo con normalidad. Por lo tanto, es necesario la descarga del software mencionado anteriormente.
+
+% \item El objetivo 3 no se ha completado puesto que no se había contemplado para este período de tiempo. Sin embargo, he tenido que llevar a cabo un cambio fundamental que afecta el cumplimiento de este objetivo. Originalmente, el plan de trabajo contemplaba que las simulaciones de dinámica mulecular se llevasen a cabo con el software \href{https://ambermd.org/}{\texttt{Amber}}. Sin embargo, en contraste con mi estudio inicial durante la elaboración del plan de trabajo, \texttt{Amber} requiere una licencia de pago. Por lo tanto, siguiendo una de las mitigaciones propuestas en el plan de trabajo, las simulaciones de dinámica molecular se llevarán a cabo con \href{http://www.biomolecular-modeling.com/Abalone/}{\texttt{Abalone II}}.
+
+% Las actividades llevadas a cabo son las siguientes:
+
+% \begin{enumerate}
+%     \item Diseño de 5 mutantes para el motivo de RNA reconocido por la proteína MSI-1. Para la obtención del motivo de RNA \texttt{wild-type} que interacciona con la proteína MSI-1, se acudió a los trabajos \cite{imai_2001} y \cite{clingman_2014}. Sin embargo, este motivo existe en un contexto de secuencia adicional que permite su correcto plegamiento a una estructura secundaria reconocida por MSI-1. Por ello, siguiendo el ejemplo de \cite{dolcemascolo_2022}, se añadieron una serie de ácidos nucleicos alrededor del motivo de reconocimiento para que el plegamiento predicho de la secuencia de RNA fuese como en las referencias \cite{imai_2001} y \cite{clingman_2014}. La estructura secundaria del plegamiento de la secuencia de RNA fue comprobada mediante \href{http://www.nupack.org/}{\texttt{Nupack}}.
+%     \item Mediante la secuencia de RNA resultante, se generaron 5 mutantes mediante sustituciones e inserciones de bases nucleotídicas. Los mutantes candidatos fueron seleccionados según su estructura secundaria, comprobada mediante \texttt{Nupack}. Las secuencias finales se encuentran en el \textbf{\nameref{anexo_A}}.
+%     \item Las secuencias mencionadas anteriormente fueron tabuladas, y se añadieron el resultado del alineamiento con la secuencia original y la estructura secundaria (en formato \texttt{dot-bracket}). Esta tabla se encuentra en el \textbf{\nameref{anexo_B}}.
+%     \item Los procedimientos anteriores se llevaron a cabo mediante un script de \texttt{Python}, el cual se encuentra en el \textbf{\nameref{anexo_C}}.
+%     \item Se computó la conformación 3D de cada uno de los motivos de RNA (gracias a su secuencia nucleotídica y estructura secundaria) mediante el servidor web \href{https://rnacomposer.cs.put.poznan.pl/}{\texttt{RNAComposer}}. Las estructuras 3D de los RNAs se encuentran en el \textbf{\nameref{anexo_D}}.
+%     \item Se descargó el \href{https://alphafold.ebi.ac.uk/files/AF-Q61474-F1-model_v4.pdb}{modelo 3D de la proteína MSI-1 de ratón} desde \href{https://www.uniprot.org/}{Uniprot}. Este modelo 3D es el predicho por \texttt{AlphaFold}, y muestra muchas zonas sin estructura (o \textit{random coil}). Esto puede ser indicativo de una mala predicción de parte de \texttt{AlphaFold}, por ende también se descargó el \href{https://www.ebi.ac.uk/pdbe/entry-files/download/pdb1uaw.ent}{modelo 3D de resonancia magnética nuclear de experimentos de cristalografía de proteínas del motivo RRM1 de MSI-1}. En función de los resultados de los simulaciones de docking, se puede considerar desechar el uso de la proteína entera y centrarse únicamente en el motivo RRM1. Las estructuras 3D de la predicción de \texttt{AlphaFold} de MSI-1 y el RRM1 se encuentran en \textbf{\nameref{anexo_E}} y \textbf{\nameref{anexo_F}}.
+%     \item Se llevaron a cabo varios intentos fallidos de simulaciones de docking entre el motivo RRM1 y el motivo de RNA denominado \texttt{orig}. En dichas simulaciones fallidas se aplicaron distintos números de \textit{gloworms}, \textit{swarms} y \textit{steps}.
+%     \item Se descargaron desde \href{https://www.chemspider.com/}{chemspider} los ficheros \texttt{.mol} de los siguientes ácidos grasos: \href{https://www.chemspider.com/Chemical-Structure.393217.html}{ácido oleico}, \href{https://www.chemspider.com/Chemical-Structure.4444105.html}{ácido linoleico}, \href{https://www.chemspider.com/Chemical-Structure.392692.html}{ácido araquidónico}, \href{https://www.chemspider.com/Chemical-Structure.960.html}{ácido palmítico} y \href{https://www.chemspider.com/Chemical-Structure.5091.html}{ácido esteárico}. Estas moléculas se emplearán simulaciones de docking y dinámica molecular futuros. Las estructuras 3D de los ácidos grasos se encuentran en \textbf{\nameref{anexo_G}}.
+% \end{enumerate}
+
+% \subsection{Actividades no previstas y realizadas o programadas}
+
+% No se tenía previsto la necesidad de programas adicionales como part del tratamiento de los ficheros \texttt{.pdb} previos a las simulaciones de docking para el caso proteína-RNA. Por ende, se tiene previsto llevar a cabo las siguientes actividades:
+
+% \begin{enumerate}
+%     \item Emplear el software \href{https://github.com/rlabduke/reduce}{\texttt{reduce}} para corregir la protonación de las moléculas.
+%     \item Emplear el software \href{https://github.com/haddocking/pdb-tools/}{\texttt{pdb-tools}} para corregir la numeración de átomos.
+% \end{enumerate}

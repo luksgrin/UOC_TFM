@@ -1,0 +1,7 @@
+	name	seq	alignment	structure
+0	orig	GGCAGCGUUAGUUAUUUAGUUCGUAUGCC	*****************************	(((((((.(.........)..))).))))
+1	mut1	GGCAGCGUUCGUUAUUUAGUUCGUAUGCC	********* *******************	(((((((..(........)..))).))))
+2	mut2	GGCAGCGUUACUUAUUUAGUUCGUAUGCC	********** ******************	(((((((..(((.....))).))).))))
+3	mut3	GGCAGCGUUAGCUAUUUAGUUCGUAUGCC	*********** *****************	(((((((..((((....))))))).))))
+4	mut4	GGCAGCGUUAGUUAUGUUAGUUCGUAUGCC	*************** **************	(((((((.(..........)..))).))))
+5	mut5	GGCAGCGUUACUUAUUUACUUCGUAUGCC	********** ******* **********	(((((((..............))).))))

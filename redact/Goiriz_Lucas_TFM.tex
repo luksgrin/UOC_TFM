@@ -1,5 +1,5 @@
 \documentclass[a4paper,12pt]{article}
-
+\usepackage[numbib,nottoc,notlof]{tocbibind}
 \usepackage{graphicx}
 \usepackage{helvet}
 \usepackage{wrapfig}
@@ -10,6 +10,8 @@
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{boldline}
+\usepackage[labelfont=bf]{caption}
+\usepackage{amsmath}
 
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\contentsname}{Index}
@@ -28,18 +30,19 @@
 \setlength{\parindent}{0pt}
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
+    linkcolor=black,
+    citecolor=black,
     urlcolor=blue
-}
+} 
 \pagestyle{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Customs
-\newcommand{\thistitle}{Molecular dynamics of Musashi-1 allosteric RNA-binding sites}
+\newcommand{\thistitle}{Docking assays of Musashi-1 allosteric RNA-binding sites}
 \newcommand{\thisauthor}{Lucas Goiriz Beltrán}
 \newcommand{\thissupervisor}{Emmanuel Fajardo}
 \newcommand{\thisPRA}{Emmanuel Fajardo}
-\newcommand{\duedate}{10 de Enero 2023}
+\newcommand{\duedate}{12 de Enero 2023}
 \newcommand{\duedateshort}{01/2023}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -148,7 +151,7 @@
         \hline
         \textbf{Idioma del trabajo:} & \cellcolor{uocgrey}\textit{Inglés}\\
         \hline
-        \textbf{Palabras clave:} & \cellcolor{uocgrey}\textit{Molecular dynamics, RNA-binding protein, Allosteric Regulation}\\
+        \textbf{Palabras clave:} & \cellcolor{uocgrey}\textit{Molecular Docking, RNA-binding protein, Allosteric Regulation}\\
         \hline\hline
         \multicolumn{2}{V{4}l V{4}}{\textbf{Resumen del Trabajo}}\\
         \hline
@@ -174,7 +177,7 @@
 %                      Figure Index Page                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Index of Figures}
+\listoffigures
 
 \pagebreak
 
@@ -182,6 +185,49 @@
 %                          Sections                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% La memoria debería ocupar entre 30 y 60 páginas. Esta cifra es orientativa y no debería limitaros. En cualquier caso, la memoria no puede ocupar más de 90 páginas (sin tener en cuenta los anexos).
+
+\pagenumbering{arabic}
+
+% Section 1: Introduction
+\input{sections/1_Introduction.tex}
+\pagebreak
+
+% Section 2: State of the art
+\input{sections/2_State_of_the_art.tex}
+\pagebreak
+
+% Section 3: Materials and methods
+\input{sections/3_Materials_and_methods.tex}
+\pagebreak
+
+% Section 4: Results
+\input{sections/4_Results.tex}
+\pagebreak
+
+% Section 5: Conclusions and further work
+\input{sections/5_Conclusions.tex}
+\pagebreak
+
+% Section 6: Glossary
+\input{sections/6_Glossary.tex}
+\pagebreak
+
+% Section 7: References
+\bibliographystyle{ieeetr}
+\bibliography{references.bib}
+% Lista numerada de las referencias bibliográficas utilizadas en la memoria. En cada lugar donde se utilice una referencia dentro del texto, debe indicarse citando el número de la referencia, por ejemplo: [7].
+ 
+% Es muy importante incluir todas las referencias utilizadas y citarlas apropiadamente, es decir, incluyendo toda la información necesaria para identificar la referencia. La información mínima a incluir según el tipo de referencia es:
+ 
+% •	Libro: Autores, Título, Edición (en su caso) Editorial, Ciudad, Año.
+% •	Artículo de revista: Autores, Título, Nombre de la Revista, Número de Página inicial y final, Número de la revista / Volumen, Año.
+% •	Web: URL y fecha en la que se ha visitado.	
+
+\pagebreak
+
+% Section 8: Appendix
+\input{sections/8_Appendix.tex}
 
 
 \end{document}

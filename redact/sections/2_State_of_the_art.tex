@@ -12,10 +12,23 @@ One of the first successful constructions of this type, and most likely the most
 
 These constructions, and all the ones that followed, would not have been possible without a (by then, small) repository of genetic parts, which in turn would not have been possible without the arduous work of an innumerable amount of traditional molecular biologists that sequenced and characterized said parts.In fact, the iGEM foundation keeps a repository of standarized biological parts \cite{parts_igem} along with various data such as the assembly methods used, levels of expression, polymerase used, etc...\\
 
-However, there is still a need for more biological parts, especially parts that are ``orthogonal'', i.e. they can co-exist and function correcly within the same organism without deviating from their theoretical behavior. 
+However, there is still a need for more biological parts, especially parts that are ``orthogonal'', i.e. they can co-exist and function correctly within the same organism without deviating from their theoretical behavior. This need, plus the known plasticity of the RNA macromolecule, have led to a growing interest in synthetic constructions where gene expression is either directly controlled by RNA \cite{siciliano_2013,seok_2017} or by an RNA-binding protein \cite{belmont_2010,cao_2015,katz_2019,babitzke_2009}.
 
 % RNA binding proteins
-\subsection{RNA-binding proteins}
+\subsection{RNA-binding proteins and the Musashi family}
 
-% Doking
-\subsection{Molecular Docking}
+RNA-binding proteins (RBPs) are a huge family of proteins that can be found among all domains of life (Bacteria, Archaea and Eukaryota) \cite{lykke_1997,draper_1999,holmqvist_2018} and can be traced back to the common ancestor of life LUCA \cite{koonin_2020}. It is therefore no surprise that RBP are still the cornerstone of the majority of cellular processes \cite{holmqvist_2018} as they govern mRNA metabolism: mRNA localization, mRNA translation, mRNA degradation, mRNA editing and mRNA stability \cite{re_2013}.\\
+
+The mechanisms in which RBPs interact with RNA differ vastly from DNA-binding proteins (which usually target the double stranded DNA major groove) because RNA comes in a vast variety of structures \cite{re_2013,corley_2020}. The latter can be observed in the shape or sequence specificity displayed by the great variety of known RNA-binding domains (RBDs) \cite{stefl_2005}.\\
+
+For instance, a popular RBD is the RNA-Recognition Motif (RRM). RRMs typically have a length between 90 and 100 aminoacids (although this can vary), display a $\beta\alpha\beta\beta\alpha\beta$ topology (where $\beta$ stands for the $\beta$-sheet secondary structure and $\alpha$ stands for the $\alpha$-helix secondary structure), they target single-stranded RNA and are usually present in multiple copies within the same protein, because their interaction with RNA by themselves is weak \cite{re_2013}.\\
+
+The latter makes RBPs containing RMMs interesting candidates for biological parts in synthetic biology, as they display two levels of ``tuneability'': the number of RMMs present within the protein and the inherent plasticity of the RNA sequence recongnized by them. Such characteristics are present in the homologues of the Musashi (MSI) family of RBPs. For instance, the mouse MSI-1 which consists of 362 aminoacids with a molecular mass of 39 kDa \cite{sakakibara_1996} contains 2 RMMs (dubbed RMM1 and RMM2) that interact with RNA containing the consensus sequence \texttt{RU}$_n$\texttt{AGU} \cite{imai_2001,zearfoss_2014}.\\
+
+MSI-1 has an additional particularity that distinguishes it from the common bunch of RBPs, and that is the capability of binding to fatty acids and weakening the MSI-1 protein's RNA-binding affinity, resulting in a dissociation between MSI-1 and the RNA sequence \cite{dolcemascolo_2022,clingman_2014}. This property plus the inherent properties of RMM-based RBPs make MSI-1 a valuable biological part for synthetic biology as a highly tuneable allosteric regulator, as shown by Dolcemascolo and colleagues \cite{dolcemascolo_2022}. However, this presumed tuneability is not yet deeply understood.
+
+\pagebreak
+
+Clingman and colleagues made great discoveries of MSI-1's interaction mechanisms \cite{clingman_2014} by means of docking assays between different fatty acids and the MSI-1-RNA complex. Nevertheless, due to the plasticity of RNA, the obtained results aren't extrapolable to other RNA motifs that MSI-1 may recognize.\\
+
+For that reason, this work attempts to shed light on the allosteric interactions occurring in the MSI-1 proteins by performing docking simulations between MSI-1's RRM1 domain, several RNA motifs and fatty acids.\\

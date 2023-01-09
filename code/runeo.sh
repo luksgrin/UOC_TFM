@@ -1,7 +1,7 @@
 # Clustering and Filtering
-echo ">>>Do clustering and filtering"
+# echo ">>>Do clustering and filtering"
 
-python3.9 ../../../manipulateRNA.py lightdock_rna.pdb
+# python3.9 ../../../manipulateRNA.py lightdock_rna.pdb
 
 ## Calculate the number of swarms
 s=`ls -d ./swarm_* | wc -l`
@@ -28,7 +28,7 @@ ant_thony.py -c 4 cluster_lightdock.list;
 lgd_rank.py $s 100;
 
 # ### Filtering models by >40% of satisfied restraints
-# lgd_filter_restraints.py --cutoff 5.0 --fnat 0.4 --lnuc rank_by_scoring.list restraints.list A B
+lgd_filter_restraints.py --cutoff 5.0 --fnat 0.4 --lnuc rank_by_scoring.list restraints.list A B
 
 # # Results
 # echo ">>>Top 10 simulations are:"

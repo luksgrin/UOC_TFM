@@ -71,7 +71,7 @@ lightdock3.py setup.json 100 -s dna -c 4
 # Clustering and Filtering
 echo ">>>Do clustering and filtering"
 
-python3.9 ../../../manipulateRNA.py rna.pdb
+python3.9 ../../../manipulateRNA.py lightdock_rna.pdb
 
 ## Calculate the number of swarms
 s=`ls -d ./swarm_* | wc -l`

@@ -44,7 +44,7 @@
     "setup_file": "setup.json",
     "setup_version": "0.9.3",
     "simulation_version": "0.9.3",
-    "start_time": "2022-12-16 16:29:04",
+    "start_time": "2023-01-07 15:59:01",
     "starting_points_seed": 324324,
     "steps": 100,
     "surface_density": 50.0,

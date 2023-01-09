@@ -9,14 +9,101 @@
  
 % En caso de que proceda, se incluirá un apartado de “Valoración económica del trabajo”. Este apartado indicará los gastos asociados al desarrollo y mantenimiento del trabajo, así como los beneficios económicos obtenidos y un análisis final sobre la viabilidad del producto.
 
-% The sequence design of the mutant MSI-1 RNA-binding motifs will depend on the mutant’s secondary structure, which will be computed in silico by NUPACK (http://www.nupack.org/). The selected mutants will need to have different yet interesting secondary structures (folded state). • The .mol files of the fatty acids will be retrieved from the Chemspider database (https://www.chemspider.com/). • Docking simulations will be carried out with LightDock (https://lightdock.org/), and the subsequent results will be visualized with the open source version of PyMol (https://github.com/schrodinger/pymol-open-source). • Molecular dynamics simulations will be carried out with AMBER (https://ambermd.org/).
+\subsection{Data Acquisition}
 
-% HITOS Task 1 will be considered a successful if the whole process of design, docking and molecular dynamics simulation is completed for at least 3 different mutants, which will be used in downstream simulations during this work. • Task 2 will be considered a successful if the process of docking and molecular dynamics simulation is completed for at least oleic acid and arachidonic acid, which again will be used in downstream simulations during this work. • Task 3 will be considered successful if at least 6 combinations of molecules are simultaneously docked and their molecular dynamics simulated. This is, 3 different mutants for each of oleic acid and arachidonic acid.
+\subsubsection{Mouse MSI-1 and MSI-1's RMM1}
 
-% \subsection{Justificación de los cambios en caso necesario}
+\href{https://www.uniprot.org/}{\texttt{Uniprot}'s database} was consulted for the structure of the mouse MSI-1 protein (see \textbf{Figure \ref{fig:Q61474uniprot}}). Unfortunately, there was no NMR crystal structure for the complete protein: the only available complete structure was \texttt{AlphaFold}'s prediction of the structure (see \textbf{Figure \ref{fig:3DMSI}}). Said structure had low confidence in the aminoacid sequence not corresponding to the RRMs. Therefore, the crystal structure of MSI-1's RRM1 (see \textbf{Figure \ref{fig:3DRRM1}}) was to be employed instead for the docking simulations.
 
-% \begin{itemize}
-%     \item El objetivo 2 ha sido descartado. Esto se debe a complicaciones adicionales a la hora de hacer el docking proteína-RNA en el programa \texttt{lightdock}:
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=\linewidth]{assets/Q61474_uniprot_entry.png}
+    \caption{\href{https://www.uniprot.org/uniprotkb/Q61474/entry}{Uniprot entry Q61474} corresponding to the mouse MSI-1. Screenshot taken on 08/01/2023.}
+    \label{fig:Q61474uniprot}
+\end{figure}
+
+The crystal NMR structure was downloaded as a \texttt{.pdb} file.
+
+\subsubsection{Fatty acids}
+
+The fatty acids to be employed down the line in the docking simulations were retrieved from their respective \href{https://www.chemspider.com/}{\texttt{Chemspider}} entries. The fatty acids downloaded were:
+
+\begin{itemize}
+    \item\href{https://www.chemspider.com/Chemical-Structure.392692.html}{arachidonic acid}
+    \item\href{https://www.chemspider.com/Chemical-Structure.4444105.html}{linoleic acid}
+    \item\href{https://www.chemspider.com/Chemical-Structure.393217.html}{oleic acid}
+    \item\href{https://www.chemspider.com/Chemical-Structure.960.html}{palmitic acid}
+    \item\href{https://www.chemspider.com/Chemical-Structure.5091.html}{stearic acid}
+\end{itemize}
+
+The molecules are shown in \textbf{Figure \ref{fig:fatty_acids}}.
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.75\linewidth]{assets/fatty_acids.png}
+    \caption{3D structure of the fatty acids to be employed. From left to right: arachidonic acid, linoleic acid, oleic acid, palmitic acid and stearic acid. Colors represent the atoms present in the structures: cyan is Carbon, red is Oxygen and white is Hydrogen. Visualized through \href{https://pymol.org/2/}{\texttt{Pymol}}.}
+    \label{fig:fatty_acids}
+\end{figure}
+
+The molecules' 3D structures were downloaded as \texttt{.mol} files. 
+
+\subsection{Generation of 3D RNA molecule structures}
+
+The raw RNA sequences to be employed were retrieved from \cite{dolcemascolo_2022} and are shown in \textbf{\nameref{appendix_A}}, where they crafted small RNA oligos based on a the selex optimal RNA sequence. RNA takes specific spatial conformations when in aqueous media, be it \textit{in vitro} or \textit{in vivo}, which can be computed directly from the RNA sequence by means of pre-measured experimental parameters \cite{santalucia_1998}.\\
+
+To do so, the Nupack software was employed \cite{dirks_2004} (specifically its associated \texttt{Python} package) and the structures in dot-bracket notation\footnote{Dot-bracket notation is a simplistic manner of representing DNA or RNA secondary structure. For more details, see \cite{rna_structure_notations}.} were recorded. In addition, the sequences were subjected to pairwise alignments (by means of MAFFT \cite{katoh_2002}) to highlight the mutations present with respect to the original oligo. The \texttt{Python} script employed to perform these computations is found in \textbf{\nameref{appendix_B}}.
+
+\vfill
+
+\pagebreak
+
+The results are shown in \textbf{Figure \ref{fig:dataset}}:
+
+\begin{figure}[htbp!]
+    \lstinputlisting[basicstyle=\tiny]{assets/dataset.tsv}
+    \caption{RNA sequences along with the result of the pairwise alingments and Nupack's prediction of their secondary structure.}
+    \label{fig:dataset}
+\end{figure}
+
+With this information (RNA sequence and secondary structure), the 3D conformation of each of the RNA motifs was computed by means of the \href{https://rnacomposer.cs.put.poznan.pl/}{\texttt{RNAComposer}} web server \cite{biesiada_2016} and downloaded in \texttt{.pdb} format. The corresponding 3D structures of the RNA motifs are shown in \textbf{Figure \ref{fig:RNAs}}.
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=\linewidth]{assets/RNAs.png}
+    \caption{3D structures of the RNA motifs. From left to right: the original RNA motif followed by the 5 mutants. Colors represent the nucleotidic bases: orange is Adenine, purple is Guanine, cyan is Cytosine and green is Uracil. Visualized through \href{https://pymol.org/2/}{\texttt{Pymol}}.}
+    \label{fig:RNAs}
+\end{figure}
+
+With the 3D structures of the RNA motifs, the next step is to prepare the protein-RNA docking simulations.
+
+\subsection{Protein-RNA docking simulations with \texttt{LightDock}}
+
+For the protein-RNA docking simulations, the \texttt{LightDock} \cite{jimenez_garcia_2017} docking software was chosen. The main reasons are the simplicity of \texttt{LightDock}, the quality of the documentation and that the software is written in \texttt{Python}, which eases debugging steps in case of complications. Originally, \texttt{LightDock} was not meant for protein-RNA docking simulations. However, by means of some reasearch and auxiliary \texttt{Python} scripts, a simple and novel pipeline was designed which makes it possible to perform such docking simulations with \texttt{LightDock}. This pipeline takes inspiration on the \href{https://lightdock.org/tutorials/0.9.3/dna_docking}{protein-DNA example tutorial from the \texttt{LightDock} documentation}.
+
+\subsubsection{Protein preparation}
+
+First, MSI-1's RRM1 \texttt{.pdb} file needs to have their hydrogen atoms modified and relabeled so that they match the \texttt{AMBER94} force field, which is the parameter set that is going to be used in this docking simulation. To do so, the softwares \href{https://github.com/rlabduke/reduce}{\texttt{REDUCE}} and \href{https://github.com/haddocking/pdb-tools/}{\texttt{PDB-Tools}} \cite{rodrigues_2018} were employed.\\
+
+In addition, the MSI-1's RRM1 \texttt{.pdb} file needed an additional motification related to the \texttt{AMBER94} force field: regular \texttt{.pdb} files employ the \texttt{HIS} identifier for the Histidine aminoacid, which does not appear in the \texttt{AMBER94} force field. The reason behind this is that for the \texttt{AMBER94} force field, Histidine can be one of 3 possible residues \cite{amber_histidine}:
+
+\begin{enumerate}
+    \item\texttt{HID}: Histidine with a single hydrogen on the delta nitrogen
+    \item\texttt{HIE}: Histidine with a single hydrogen on the epsilon nitrogen
+    \item\texttt{HIP}: Histidine with hydrogens on both nitrogens (delta and epsilon). This Histidine has a positive charge
+\end{enumerate}
+
+Therefore, one has to check which kind of Histidine residue is present in the molecule, and change it for the corresponding \texttt{AMBER94}-compatible identifier. This can be done with a simple \texttt{Python} script, which is found in \textbf{\nameref{appendix_C}}.
+
+\subsubsection{RNA preparation}
+
+
+% Las siguientes subsecciones son la liada parda que aún he de arreglar
+\subsection{Fatty acid-protein docking simulations}
+\subsection{Fatty acid-protein-RNA docking simulations}
+
+
+%• Docking simulations will be carried out with LightDock (https://lightdock.org/), and the subsequent results will be visualized with the open source version of PyMol (https://github.com/schrodinger/pymol-open-source). 
+
 
 %     \begin{itemize}
 %         \item La librería \texttt{proDy} (una librería que emplea \texttt{lightdock} para las simulaciones de docking) no reconoce cadenas de RNA expecificadas en los ficheros \texttt{.pdb} si estas son especificadas mediante el prefijo \texttt{R} en los identificadores de las bases nucleotídicas (es decir, \texttt{RA}, \texttt{RG}, \texttt{RU} y \texttt{RC}) en la estructura de la molécula. Este hecho resulta en un error en el paso de setup de \texttt{lightdock}.
@@ -27,15 +114,6 @@
     
 %         \item Pese a la mitigación anterior, las simulaciones continuaban fallando. Esto se debía a que los RNAs empleados terminan en ``OH'' en los extremos 3' y 5'. \texttt{lightdock} no reconoce estos átomos como parte de la estructura ni tiene parámetros de AMBER \textit{force field} para ellos. Como mitigación, he decidido eliminar esos átomos mediante un script de \texttt{Python}. Asumo que eliminar un par átomos en los extremos de la molécula de RNA no marca mucha diferencia a la hora de hacer el docking. Este script se encuentra en \textbf{\nameref{anexo_C}}.
     
-%         \item Una vez más, pese a las mitigaciones llevadas a cabo anteriormente, las simulaciones seguían fallando. Esta vez, el error venía de parte del fichero \texttt{.pdb} de la proteína: resulta que el aminoácido Histidina (con el identificador \texttt{HIS}) no existe en el AMBER \textit{force field}. Esto se debe a que para el AMBER \textit{force field}, Histidina puede ser uno de 3 residuos \cite{amber_histidine}:
-
-%         \begin{enumerate}
-%             \item\texttt{HID}: Histidina con un hidrógeno en el nitrógeno delta
-%             \item\texttt{HIE}: Histidina con un hidrógeno en el nitrógeno epsilon
-%             \item\texttt{HIP}: Histidina con hidrógenos en ambos nitrógenos (delta y epsilon). Esta Histidina tiene carga positiva
-%         \end{enumerate}
-
-%         La mitigación consistió en cambiar el identificador \texttt{HIS} por el identificador adecuado mediante un script de \texttt{Python}. Este script se encuentra en \textbf{\nameref{anexo_D}}.
 
 %         \item Con las mitigaciones anteriores, \texttt{lightdock} ejecutó sin problemas. Sin embargo, \texttt{lgd\_generate\_conformations} no ejecutó correctamente a la hora de construir los modelos de docking en formato \texttt{.pdb}. Esto se debe a que \texttt{lgd\_generate\_conformations}, como en uno de los pasos anteriores, no reconocía la estructura de RNA por el prefijo de la \texttt{R}. Por ende, hubo que añadir un paso de eliminación de ese prefijo de la \texttt{R}. Esto se llevó a cabo mediante el script de \texttt{Python} encontrado en \textbf{\nameref{anexo_A}}.
 

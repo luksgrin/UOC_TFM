@@ -39,7 +39,7 @@ This general objective breaks down into the following specific objectives:
     \item Assess the structure of MSI-1's RRM1-RNA mutant complex through docking for each of the mutants.
     \item Assess the structure of MSI-1's RRM1-fatty acid complex through docking for each of the fatty acids of interest: oleic acid, linoleic acid, palmitoleic acid, arachidonic acid and stearic acid.
     \item Keep the top 2 fatty acids whose interaction with MSI-1 is the clearest.
-    \item Assess the structure of RNA mutant-MSI-1's RRM1-fatty acid complex through docking simulations of the mutant RNA-motifs in presence of each of the selected fatty acids.
+    \item Assess the structure of RNA mutant-MSI-1's RRM1-fatty acid complex through the coupling of the docking models obtained.
 \end{enumerate}
     
 \subsection{Impact on sustainability, social-ethical and diversity}
@@ -104,7 +104,14 @@ Then, all the docking simulations are performed:
     \item Between the models obtained in the simulations of step 1 and the fatty acids.
 \end{enumerate}
 
-The docking software will be \href{https://lightdock.org/}{\texttt{LightDock}} because it is license-free and open source. The best models will be selected based on the chosen scoring function. In addition, all the models will be visualized with \href{https://pymol.org/2/}{\texttt{Pymol}}.
+The choice of docking software will vary for the type of docking simulation to be performed:
+
+\begin{itemize}
+    \item For protein-RNA docking, the docking software will be \href{https://lightdock.org/}{\texttt{LightDock}} because it is license-free, open source and it is partially written in \texttt{Python}.
+    \item For protein-lipid docking, the docking software will be \href{https://vina.scripps.edu}{\texttt{AutoDock Vina}}, aided by \href{https://ccsb.scripps.edu/mgltools/}{\texttt{AutoDock Tools}} for the preparation step.
+\end{itemize}
+
+ The best models will be selected based on the chosen scoring function and biological significancy. In addition, all the models will be visualized with \href{https://pymol.org/2/}{\texttt{Pymol}}.
 
 \subsection{Work plan}
 
@@ -123,6 +130,7 @@ This work is divided in the following tasks (and respective subtasks):
             \item Keep the top 2 fatty acids whose resulting model is the best.
         \end{enumerate}
     \item Perform docking simulations of MSI-1 and a subset of mutants of the MSI-1 RNA-binding-motifs in presence of fatty acids.
+    \item Coupling of the successful docking models to visualize the lipid-MSI1-RNA complex.
     \pagebreak
     \item Defense preparation
         \begin{enumerate}

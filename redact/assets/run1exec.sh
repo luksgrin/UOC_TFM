@@ -1,0 +1,1 @@
+bash run1.sh target_protein.pdb ligand_rna.pdb

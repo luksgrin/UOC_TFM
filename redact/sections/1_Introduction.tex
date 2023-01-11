@@ -36,10 +36,10 @@ This general objective breaks down into the following specific objectives:
 
 \begin{enumerate}
     \item \textit{In silico} Generate the 3D structures of 5 mutant MSI-1 RNA-binding motifs used in \cite{dolcemascolo_2022}. The 3D structures of the motifs will depend on the sequence-based-prediction of their secondary structures.
-    \item Perform docking simulations between MSI-1 and each of the mutants.
-    \item Perform docking simulations between MSI-1 and several fatty acids of interest: oleic acid, linoleic acid, palmitoleic acid, arachidonic acid and stearic acid.
+    \item Assess the structure of MSI-1's RRM1-RNA mutant complex through docking for each of the mutants.
+    \item Assess the structure of MSI-1's RRM1-fatty acid complex through docking for each of the fatty acids of interest: oleic acid, linoleic acid, palmitoleic acid, arachidonic acid and stearic acid.
     \item Keep the top 2 fatty acids whose interaction with MSI-1 is the clearest.
-    \item Repeat the docking simulations of the mutant RNA-motifs in presence of each of the selected fatty acids.
+    \item Assess the structure of RNA mutant-MSI-1's RRM1-fatty acid complex through docking simulations of the mutant RNA-motifs in presence of each of the selected fatty acids.
 \end{enumerate}
     
 \subsection{Impact on sustainability, social-ethical and diversity}
@@ -55,7 +55,7 @@ The result of this Master's Thesis has had a negligible but negative impact on s
 
 This impact can be considered negligible because the net amount of energy consumed during the computations is very small. Nevertheless, it is important to highlight this aspect as there is room for improvement: the source code of the docking software employed in this work is mainly composed of two programming languages: \texttt{C} (72\%) and \texttt{Python} (28\%).\\
 
-Pereira and colleagues developed a benchmark to order programming languages with respect of their energy consumption when executing well-known computer science algorithms and data structures \cite{pereira_2017}. Their finding was that the least energy consuming programming language was \texttt{C}, while \texttt{Python} was one of the most energy consuming.\\
+Pereira and colleagues developed a benchmark to order programming\linebreak languages with respect of their energy consumption when executing well-known computer science algorithms and data structures \cite{pereira_2017}. Their finding was that the least energy consuming programming language was \texttt{C}, while \texttt{Python} was one of the most energy consuming.\\
 
 It can be discussed that, in order to reach minimal energy consumption, the programming language to be used in software that is going to be distributed and executed multiple times should be exclusively \texttt{C}. The disadvantages of \texttt{C} are that it takes more time to write a full program than with higher level languages (such as \texttt{Python}), it is more difficult to mantain a codebase written in \texttt{C} and that \texttt{C} is not a particularly accessible programming language for non-computer scientists.\\
 
@@ -85,7 +85,7 @@ Furhermore, this work doesn't have any diversity, gender nor human rights motiva
 
 \subsection{Approach and methods}
 
-This work aims to extend the work of Dolcemascolo and colleagues \cite{dolcemascolo_2022} where they designed a synthetic genetic circuit that employed MSI-1 as post-transcriptional regulator. Thanks to the plasticity of RNA, several mutants of MSI-1's RNA-binding core motif were designed, and it was shown that gene regulation (which is tightly dependent on the MSI-1-RNA interaction) was altered for all mutants: some of them displayed an increase in regulation fold change while others displayed a decrease. In addition, the effects of MSI-1 induced regulation were partially nullified in presence of oleic acid.\\
+This work aims to extend the work of Dolcemascolo and colleagues \cite{dolcemascolo_2022} where they designed a synthetic genetic circuit that employed MSI-1 as post-\linebreak transcriptional regulator. Thanks to the plasticity of RNA, several mutants of MSI-1's RNA-binding core motif were designed, and it was shown that gene regulation (which is tightly dependent on the MSI-1-RNA interaction) was altered for all mutants: some of them displayed an increase in regulation fold change while others displayed a decrease. In addition, the effects of MSI-1 induced regulation were partially nullified in presence of oleic acid.\\
 
 The initial step of this work will consist in the retrieval of several 3D structures from the appropriate databases:
 
@@ -176,13 +176,13 @@ The main products of this work are:
     \item 3D structures of 5 MSI-1 RNA-motifs used in \cite{dolcemascolo_2022}.
     \item\textit{los modelos o lo que salga}
     \item\textit{los scripts del pipeline}
-    \item\href{https://github.com/lightdock/lightdock.github.io/blob/master/tutorials/0.9.3/rna_docking/index.md}{A step-by-step tutorial on how to perform a simple protein-RNA docking with \texttt{LightDock}}.
+    \item\href{https://lightdock.org/tutorials/0.9.3/rna_docking}{A step-by-step tutorial on how to perform a simple protein-RNA docking with \texttt{LightDock}}.
 \end{enumerate}
 
 Resulting products are available in different repositories:
 \begin{enumerate}
     \item The direct products of this work are present in \href{https://github.com/luksgrin/UOC_TFM}{this \texttt{GitHub} repository}.
-    \item The step-by-step tutorial on how to perform a simple protein-RNA docking with \texttt{LightDock} is available at \href{https://github.com/lightdock/lightdock.github.io}{the \texttt{LightDock} \texttt{GitHub} repository}, and soon on the \href{https://lightdock.org/tutorials/}{\texttt{LightDock} tutorials page}.
+    \item The step-by-step tutorial on how to perform a simple protein-RNA docking with \texttt{LightDock} is available at \href{https://github.com/lightdock/lightdock.github.io}{the \texttt{LightDock} \texttt{GitHub} repository}, and on the \href{https://lightdock.org/tutorials/}{\texttt{LightDock} tutorials page}.
 \end{enumerate}
 
 \subsection{Summary of other sections of this report}

@@ -1,0 +1,1 @@
+lightdock3.py setup.json 100 -s dna -c 4

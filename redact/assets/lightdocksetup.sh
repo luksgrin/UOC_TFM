@@ -1,0 +1,1 @@
+lightdock3setup.py protein.pdb rna.pdb -anm

@@ -118,7 +118,7 @@ The setup will generate, among other files, the simulation-ready structures\line
 
 \subsubsection{\texttt{LightDock} docking simulation, clustering and ranking}
 
-If the previous steps executed without issues, it is possible to run \texttt{LightDock} as shown in \texttt{Figure \ref{fig:lightdockexec}}:
+If the previous steps executed without issues, it is possible to run \texttt{LightDock} as shown in \textbf{Figure \ref{fig:lightdockexec}}:
 
 \begin{figure}[htbp!]
     \lstinputlisting[language=bash]{assets/lightdockexec.sh}
@@ -177,8 +177,39 @@ Next, the fatty acid in \texttt{.pdb} format is loaded into \texttt{AutoDock Too
 
 \subsubsection{Grid preparation}
 
-One requirement for running \texttt{AutoDock Vina} is knowing the ``pocket'' which the ligand molecule interacts with. This site is specified by a hexahedron that delimits the spatial area where this site resides, as shown in \textbf{Figure \ref{}}:
+One requirement for running \texttt{AutoDock Vina} is knowing the ``pocket'' which the ligand molecule interacts with. This site is specified by a hexahedron that delimits the spatial area where this site resides (i.e. a grid box), as shown in \textbf{Figure \ref{fig:gridbox}}.\\
 
+If the binding ``pocket'' is unknown, the grid box can be made big so that several conformations around the protein are explored. In the case of MSI-1's RRM1, the binding pocket that interacts with the fatty acids was described in detail by Clingman and colleagues \cite{clingman_2014}, and can be seen easily in the rightmost protein of \textbf{Figure \ref{fig:3DRRM1}}.\\
 
+With this information, the grid box was manually restrained and exported by clicking \texttt{File>Output grid dimensions file}. The grid dimensions file can be found in \textbf{\nameref{appendix_J}}. The selected grid box will be remain the same for all the protein-lipid docking simulations, because the target protein (MSI-1's RRM1) will remain unchanged.
 
-\subsection{Lipid-protein-RNA}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{assets/AutoDockTools_BOX.png}
+    \caption{\texttt{AutoDock Tools} generic grid box.}
+    \label{fig:gridbox}    
+\end{figure}
+
+Next, the config file for \texttt{AutoDock Vina} has to be created. This file must contain the protein model name, the ligand model name, the information found in the grid file and two additional parameters: energy range and exhaustiveness. For the latter two parameters, which control the energy spread between the best and the worst output models and the number of times the simulation is executed respectively, the default parameters \texttt{range = 4} and \texttt{exhaustiveness = 8} are employed. The config file to be used in the protein-lipid docking simulations can be found in \textbf{\nameref{appendix_K}}.\\
+
+The following step is to run the docking simulation itself.
+
+\subsubsection{\texttt{AutoDock Vina} simulation}
+
+Running a docking simulation with \texttt{AutoDock Vina} requires the prepared protein model in \texttt{.pdbqt} format, the preared ligand model in \texttt{.pdbqt} format and an appropriate config file. Then, a simulation is run with the command show in \textbf{Figure \ref{fig:execvina}}:
+
+\begin{figure}[htbp!]
+    \lstinputlisting[language=Bash]{assets/runVina.sh}
+    \caption{Execution of a docking simulation with \texttt{AutoDock Vina}.}
+    \label{fig:execvina}
+\end{figure}
+
+The file \texttt{output.pdb} contains the result of the docking simulation and consists of the ligand molecule in 9 different conformations. The log file contains information related to the run and the energy scores of each of the conformations. The visualization of the docking simulation result is done by loading the protein model and the \texttt{output.pdb} file simultaneously in a software such as \href{https://pymol.org/2/}{\texttt{Pymol}}.
+
+\subsection{Lipid-protein-RNA complex visualization}
+
+The visualization of the lipid-protein-RNA is done by manually aligning the models of the protein-RNA docking simulations with the models of the protein-lipid docking simulations. This procedure is not conceptually optimal, as the correct approach would be to perform a 2 molecule to 1 protein docking simulation, or a docking simulation where the receptor protein is already in contact with the RNA but not with the fatty acid.\\
+
+However, the latter procedures are not possible due to the atom incompatibilities of the docking models given by \texttt{LightDock} and \texttt{AutoDock Vina}: for the models to be compatible for an \texttt{AutoDock Vina} simulation, it would be necessary to perform a soft molecular dynamics simulation on the \texttt{LightDock} model to fix nicked bonds within the molecular structures, which is out of scope of this work.\\
+
+As an alternative, a simultaneous visualization can yield insights on the underlying mechanisms of the allosteric interactions in MSI1's RRM1. This visualization is done by means of \href{https://pymol.org/2/}{\texttt{Pymol}}.

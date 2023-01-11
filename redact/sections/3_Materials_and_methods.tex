@@ -148,6 +148,36 @@ For the lipid-protein docking simulations, \texttt{AutoDock Vina} docking softwa
 
 \subsubsection{Protein preparation}
 
+First, MSI-1's RRM1 \texttt{.pdb} is loaded into \texttt{AutoDock Tools}, which displays all the models present in said file, as show in \textbf{Figure \ref{fig:autodockprotein}}:
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{assets/AutoDockTools_load_protein.png}
+    \caption{Protein models in \texttt{AutoDock Tools}.}
+    \label{fig:autodockprotein}
+\end{figure}
+
+It is mandatory to discard the models that are not going to be used in the docking simulations. For simplicity, in this work the model to be kept is the first one.\\
+
+Next, there are a series of procedures to prepare the protein model for docking:
+
+\begin{enumerate}
+    \item Remove the water molecules by clicking \texttt{Edit>Delete Water}. This step may be skipped if there are no water molecules present.
+    \item Add polar hydrogen atoms by clicking \texttt{Edit>Hydrogens>Add} and then select \texttt{Polar Only}. Again, this step may be skipped if the hydrogen atoms are already present.
+    \item Add Kollmann charges by clicking \texttt{Edit>Charges>Add Kollmann Charges}. This step is unskippable and it is essential for the docking simulation to be successful.
+\end{enumerate}
+
+Once these steps are completed, the protein model is ready for docking and can be saved in \texttt{.pdbqt} format by clicking \texttt{Grid>Macromolecule>Choose...}.
+
+\subsubsection{Lipid preparation}
+
+The fatty acid molecules also need a preparation step prior to the docking simulation. First, it is necessary to convert the fatty acid models from \texttt{.mol} format to \texttt{.pdb} format. One way to do this is to open the \texttt{.mol} file in \href{https://pymol.org/2/}{\texttt{Pymol}} and then saving it in \texttt{.pdb} format. An alternative way would be to use an online file converter, such as \href{https://datascience.unm.edu/tomcat/biocomp/convert}{this one}.\\
+
+Next, the fatty acid in \texttt{.pdb} format is loaded into \texttt{AutoDock Tools}, where preparation is done by clicking \texttt{Ligand>Input>Choose...} and selecting the fatty acid by clicking \texttt{Select Molecule for AutoDock4}. This will remove hydrogens and compute charges, which renders the fatty acid ready for codking. The model is then exported by clicking \texttt{Ligand>Output>Save}.
+
+\subsubsection{Grid preparation}
+
+One requirement for running \texttt{AutoDock Vina} is knowing the ``pocket'' which the ligand molecule interacts with. This site is specified by a hexahedron that delimits the spatial area where this site resides, as shown in \textbf{Figure \ref{}}:
 
 
 

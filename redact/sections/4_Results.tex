@@ -105,7 +105,7 @@ The best structures (chosen by score and following the previous criterion) are s
     \minipage{0.48\textwidth}
         \includegraphics[trim={6.5cm 0 5.5cm 0},clip,width=\linewidth]{assets/RRM1_palmitic_solo.png}
     \endminipage
-    \caption[Top models for RRM1-fatty acid complexes.]{Top models for RRM1-fatty acid complexes. From left to right and top to bottom: models for RRM1-oleic acid (green), RRM1-linoleic acid (yellow), RRM1-stearic acid (white), RRM1-arachidonic acid (purple) and RRM1-palmitic acid (orange). Visualized through \href{https://pymol.org/2/}{\texttt{Pymol}}.}
+    \caption[Top models for RRM1-fatty acid docking simulations.]{Top models for RRM1-fatty acid docking simulations. From left to right and top to bottom: models for RRM1-oleic acid (green), RRM1-linoleic acid (yellow), RRM1-stearic acid (white), RRM1-arachidonic acid (purple) and RRM1-palmitic acid (orange). Visualized through \href{https://pymol.org/2/}{\texttt{Pymol}}.}
     \label{fig:fattyAcidModels}
 \end{figure}
 
@@ -115,4 +115,44 @@ In contrast, short and flexible fatty acids (see for example oleic acid), the ea
 
 \subsection{Lipid-protein-RNA complex visualization}
 
+The construction and visualization of the lipid-protein-RNA complexes was done by loading the protein-RNA docking models and the protein lipid docking models, and then manually superposing them so that all structures had cohesion within \href{https://pymol.org/2/}{\texttt{Pymol}}.\\
 
+Since the protein-mutant RNA motifs docking models did not reach consensus, it only is reliable to build the lipid-protein-RNA complex with the original RNA. The oleic acid-RRM1-original RNA motif complex is shown in \textbf{Figure \ref{fig:oleicOrigComplex}}:
+
+\begin{figure}[htbp!]
+    \minipage{0.48\textwidth}
+        \includegraphics[trim={6.5cm 0 5.5cm 0},clip,width=\linewidth]{assets/RRM1_orig_oleic1.png}
+    \endminipage\hfill
+    \minipage{0.48\textwidth}
+        \includegraphics[trim={6.5cm 0 7cm 0},clip,width=\linewidth]{assets/RRM1_orig_oleic2.png}
+    \endminipage
+    \caption[Oleic acid-RRM1-original RNA motif complex.]{Oleic acid-RRM1-original RNA motif complex. The leftmost structure is a side view while the rightmost structure is a front view. Visualized through \href{https://pymol.org/2/}{\texttt{Pymol}}.}
+    \label{fig:oleicOrigComplex}
+\end{figure}
+
+The locations at which the RNA motif and the oleic acid attach are clearly different: the RNA motif attaches around the \texttt{DPLTKRS} loop while the oleic acid enters a pocket located on the opposite face of the protein. The distance among these binding sites and the size of the molecules discards the allosteric behaviour stemming from steric impediments caused by the oleic acid.\\
+
+Therefore, allosterism must stem from a conformational change of the protein due to the non-polar nature of the oleic acid-RRM1 interaction. The conformational change could be transmitted to the opposite face of the protein, altering the RNA binding site and thus causing a chance for release.\\
+
+The remaining complexes, which originate from employing the other fatty acids, are constructed as well. These are shown in \textbf{Figure \ref{fig:complexesFinal}}:\pagebreak
+
+\begin{figure}[htbp!]
+    \minipage{0.48\textwidth}
+        \includegraphics[trim={6.5cm 0 5.5cm 0},clip,width=\linewidth]{assets/RRM1_orig_linoleic.png}
+    \endminipage\hfill
+    \minipage{0.48\textwidth}
+        \includegraphics[trim={6.5cm 0 7cm 0},clip,width=\linewidth]{assets/RRM1_orig_stearic.png}
+    \endminipage\\
+    \minipage{0.48\textwidth}
+        \includegraphics[trim={6.5cm 0 6.5cm 0},clip,width=\linewidth]{assets/RRM1_orig_arachidonic.png}
+    \endminipage\hfill
+    \minipage{0.48\textwidth}
+        \includegraphics[trim={6.5cm 0 5.5cm 0},clip,width=\linewidth]{assets/RRM1_orig_palmitic.png}
+    \endminipage
+    \caption[Top models for RRM1-fatty acid complexes.]{Top models for RRM1-fatty acid complexes. From left to right and top to bottom: models for RRM1-oleic acid (green), RRM1-linoleic acid (yellow), RRM1-stearic acid (white), RRM1-arachidonic acid (purple) and RRM1-palmitic acid (orange). Visualized through \href{https://pymol.org/2/}{\texttt{Pymol}}.}
+    \label{fig:complexesFinal}
+\end{figure}
+
+For the remaining fatty acids, the same reasoning holds: interactions occur in different faces of the protein, and the distance among sites, plus the small size of the ligands, discard steric impediments.\\
+
+Therefore, allosterism most likely originates from protein conformational change caused by binding of the fatty acid.

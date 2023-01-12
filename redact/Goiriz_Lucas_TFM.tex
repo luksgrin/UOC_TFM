@@ -14,6 +14,7 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{longtable}
 
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\contentsname}{Index}
@@ -158,38 +159,37 @@
 \pagenumbering{roman}
 
 \section*{\centering FICHA DEL TRABAJO FINAL}
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{V{4}r|p{9cm}V{4}}
-        \hlineB{4}
-        \textbf{Título del trabajo:} & \cellcolor{uocgrey}\textit{\thistitle}\\
-        \hline
-        \textbf{Nombre del autor:} & \cellcolor{uocgrey}\textit{\thisauthor}\\
-        \hline
-        \textbf{Nombre del consultor/a:} & \cellcolor{uocgrey}\textit{\thissupervisor}\\
-        \hline
-        \textbf{Nombre del PRA:} & \cellcolor{uocgrey}\textit{\thisPRA}\\
-        \hline
-        \textbf{Fecha de entrega:} & \cellcolor{uocgrey}\textit{\duedateshort}\\
-        \hline
-        \textbf{Titulación o programa:} & \cellcolor{uocgrey}\textit{Máster Universitario en Bioinformática y Bioestadística}\\
-        \hline
-        \textbf{Área del Trabajo Final} & \cellcolor{uocgrey}\textit{Drug Design and Structural Biology}\\
-        \hline
-        \textbf{Idioma del trabajo:} & \cellcolor{uocgrey}\textit{Inglés}\\
-        \hline
-        \textbf{Palabras clave:} & \cellcolor{uocgrey}\textit{Molecular Docking, RNA-binding protein, Allosteric Regulation}\\
-        \hline\hline
-        \multicolumn{2}{V{4}l V{4}}{\textbf{Resumen del Trabajo}}\\
-        \hline
-        \multicolumn{2}{V{4}p{14.3cm}V{4}}{\cellcolor{uocgrey} Máximo 250 palabras, con la finalidad, contexto de aplicación, metodología, resultados y conclusiones del trabajo}\\
-        \hline
-        \multicolumn{2}{V{4}l V{4}}{\textbf{Abstract}}\\
-        \hline
-        \multicolumn{2}{V{4}p{14.3cm}V{4}}{\cellcolor{uocgrey} A maximum of 250 words, detailing the purpose, context of application, methodology, results and conclusions of the work}\\
-        \hlineB{4}
-    \end{tabular}
-\end{table}
+%    \centering
+\begin{longtable}{V{4}r|p{9cm}V{4}}
+    \hlineB{4}
+    \textbf{Título del trabajo:} & \cellcolor{uocgrey}\textit{\thistitle}\\
+    \hline
+    \textbf{Nombre del autor:} & \cellcolor{uocgrey}\textit{\thisauthor}\\
+    \hline
+    \textbf{Nombre del consultor/a:} & \cellcolor{uocgrey}\textit{\thissupervisor}\\
+    \hline
+    \textbf{Nombre del PRA:} & \cellcolor{uocgrey}\textit{\thisPRA}\\
+    \hline
+    \textbf{Fecha de entrega:} & \cellcolor{uocgrey}\textit{\duedateshort}\\
+    \hline
+    \textbf{Titulación o programa:} & \cellcolor{uocgrey}\textit{Máster Universitario en Bioinformática y Bioestadística}\\
+    \hline
+    \textbf{Área del Trabajo Final} & \cellcolor{uocgrey}\textit{Drug Design and Structural Biology}\\
+    \hline
+    \textbf{Idioma del trabajo:} & \cellcolor{uocgrey}\textit{Inglés}\\
+    \hline
+    \textbf{Palabras clave:} & \cellcolor{uocgrey}\textit{Molecular Docking, RNA-binding protein, Allosteric Regulation}\\
+    \hline\hline
+    \multicolumn{2}{V{4}l V{4}}{\textbf{Resumen del Trabajo}}\\
+    \hline
+    \multicolumn{2}{V{4}p{14.3cm}V{4}}{\cellcolor{uocgrey}\small{La proteína Musashi-1 (MSI-1) es una proteína de unión a RNA que juega un papel crucial en el desarrollo neuronal tanto en vertebrados como en invertebrados que además también interactúa alostéricamente con ácidos grasos. Estas propiedades hacen que MSI-1 sea una parte biológica interesante en biología sintética para su aplicación como regulador post-transcripcional alostérico de la expresión génética en circuitos généticos sintéticos. Sin embargo, con tal de utilizar con seguridad a MSI-1 como una parte biológica, es necesario entender cómo funcionan sus mecanismos de interacción subyacentes independientemente de los ligandos específicos proporcionados. En este trabajo, se estudian las interacciones alostéricas ocurrentes en MSI-1 mediante simulaciones de docking proteína-RNA y proteína-lípido, a través de una variedad de motivos de RNA sintéticos y de ácidos grasos. Los resultados indican que el comportamiento alostérico de MSI-1 es probablemente debido a un cambio conformacional dentro de la proteína, el cual altera la región de unión a RNA. La eficiencia con la que un ácido graso particular induce este cambio conformacional aún debe ser estudiada, aunque se sugiere que los ácidos grasos más pequeños y flexibles pueden tener una mayor capacidad para inducir cambios conformacionales en la proteína. Los diferentes modelos de interacción proteína-RNA obtenidos fueron inconsistentes para cada motivo RNA, por lo que el efecto de la secuencia nucleotídica del RNA en la interacción continúa sin respuesta.}}\\
+    \hline
+    \multicolumn{2}{V{4}l V{4}}{\textbf{Abstract}}\\
+    \hline
+    \multicolumn{2}{V{4}p{14.3cm}V{4}}{\cellcolor{uocgrey}\small{The Musashi-1 (MSI-1) protein is a neural RNA-binding protein that plays a crucial role in neural development in both vertebrates and invertebrates which also interacts allosterically with fatty acids. These properties make MSI-1 an interesting biological part in synthetic biology for its applicability as an allosteric post-transcriptional regulator of gene expression in synthetic gene circuits. However, in order to confidently use MSI-1 as a biological part, there is a need to understand how its underlying interaction mechanisms work irrespective of the particular ligands provided. In this work, the allosteric interactions ocurring in MSI-1 are studied by means of protein-RNA and protein-lipid docking simulations involving a variety of synthetic RNA motifs and several fatty acids. The results indicate that the allosteric behavior of MSI-1 is likely due to a conformational change within the protein that alters the RNA binding region. The efficiency at which a particular fatty acid induces this conformational change is yet to be studied, although it is suggested that smaller and more flexible fatty acid molecules may have a greater ability to induce conformational changes in the protein. The different protein-RNA interaction models obtained were inconsistent within each different RNA motif, so the effect of the RNA nucleic acid sequence itself on the interaction remains unanswered.}
+    }\\
+    \hlineB{4}
+\end{longtable}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
